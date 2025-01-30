@@ -40,15 +40,15 @@ export function LoginForm({
       });
 
       if (result?.error) {
-        setError("Invalid email or password");
+        setError("Email ou senha inválida");
         return;
       }
 
-      router.push("/dashboard");
+      router.push("/");
       router.refresh();
     } catch (error) {
       console.error(error);
-      setError("Something went wrong. Please try again.");
+      setError("Algo deu errado. Tente novamente!");
     } finally {
       setIsLoading(false);
     }
@@ -60,7 +60,7 @@ export function LoginForm({
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>
           <CardDescription>
-            Enter your email below to login to your account
+            Entre com seu email para fazer login
           </CardDescription>
         </CardHeader>
 
@@ -83,12 +83,12 @@ export function LoginForm({
               </div>
               <div className="grid gap-2">
                 <div className="flex items-center">
-                  <Label htmlFor="password">Password</Label>
+                  <Label htmlFor="password">Senha</Label>
                   <a
                     href="#"
                     className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
                   >
-                    Forgot your password?
+                    Esqueceu a senha?
                   </a>
                 </div>
                 <Input
@@ -104,9 +104,9 @@ export function LoginForm({
               </Button>
             </div>
             <div className="mt-4 text-center text-sm">
-              Don&apos;t have an account?{" "}
+              Não tem conta?{" "}
               <a href="/signup" className="underline underline-offset-4">
-                Sign up
+                Cadastre-se
               </a>
             </div>
           </form>

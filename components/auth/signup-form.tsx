@@ -50,7 +50,7 @@ export function SignupForm({
       const data = await response.json();
 
       if (!response.ok) {
-        setError(data.error || "Something went wrong");
+        setError(data.error || "Algo deu errado");
         return;
       }
 
@@ -62,7 +62,7 @@ export function SignupForm({
       });
 
       if (result?.error) {
-        setError("Failed to login after registration");
+        setError("Falha ao fazer login");
         return;
       }
 
@@ -70,7 +70,7 @@ export function SignupForm({
       router.refresh();
     } catch (error) {
       console.error(error);
-      setError("Something went wrong. Please try again.");
+      setError("Algo deu errado. Tente novamente!");
     } finally {
       setIsLoading(false);
     }
@@ -80,9 +80,9 @@ export function SignupForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">Create an account</CardTitle>
+          <CardTitle className="text-2xl">Cria uma conta</CardTitle>
           <CardDescription>
-            Enter your details below to create your account
+            Preencha os campos abaixo para criar uma conta
           </CardDescription>
         </CardHeader>
 
@@ -93,7 +93,7 @@ export function SignupForm({
                 <div className="text-sm text-red-500 text-center">{error}</div>
               )}
               <div className="grid gap-2">
-                <Label htmlFor="name">Name</Label>
+                <Label htmlFor="name">Nome</Label>
                 <Input
                   id="name"
                   name="name"
@@ -115,7 +115,7 @@ export function SignupForm({
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">Senha</Label>
                 <Input
                   id="password"
                   name="password"
@@ -125,11 +125,11 @@ export function SignupForm({
                 />
               </div>
               <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? "Creating account..." : "Create account"}
+                {isLoading ? "Criando conta..." : "Criar conta"}
               </Button>
             </div>
             <div className="mt-4 text-center text-sm">
-              Already have an account?{" "}
+              Já tem uma conta?{" "}
               <a href="/login" className="underline underline-offset-4">
                 Login
               </a>
