@@ -6,21 +6,24 @@ interface MenuItemProps {
   title?: string;
   action?: () => boolean;
   isActive?: () => boolean;
+  isDisabled?: boolean;
 }
 export default function MenuItem({
   icon,
   title,
   action,
   isActive,
+  isDisabled,
 }: MenuItemProps) {
   const activeClass = isActive && isActive();
   return (
     <Button
       variant="outline"
       size="icon"
+      disabled={isDisabled}
       className={`menu-item ${
         activeClass
-          ? "bg-primary text-primary-foreground hover:bg-primary/80 hover:text-primary-foreground"
+          ? "bg-primary text-foreground hover:bg-primary/80 hover:text-foreground"
           : "bg-transparent"
       } p-1`}
       onClick={action}

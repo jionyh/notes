@@ -3,6 +3,7 @@ import { hashPassword } from "@/lib/auth/password";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
+  console.log("aqui");
   try {
     const { email, password, name } = await req.json();
 
@@ -42,9 +43,10 @@ export async function POST(req: Request) {
 
     return NextResponse.json(user);
   } catch (error) {
+    console.log(error);
     console.error("Registration error:", error);
     return NextResponse.json(
-      { error: "Something went wrong" },
+      { error: "Something went wrongaa" },
       { status: 500 }
     );
   }

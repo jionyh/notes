@@ -37,7 +37,7 @@ export default function RootLayout({
         >
           <div className="flex max-h-dvh min-h-dvh w-full mx-auto container max-w-5xl p-2">
             <Card className="flex-1 overflow-y-hidden">
-              <CardContent className=" p-0 m-0"> {children}</CardContent>
+              <CardContent className=" p-0 m-0 h-full ">{children}</CardContent>
             </Card>
           </div>
         </ThemeProvider>

@@ -15,9 +15,9 @@ export default async function AppLayout({ children }: AppLayoutProps) {
     redirect("/login");
   }
   return (
-    <div className="">
+    <div className="flex flex-col h-full">
       <Header />
-      <main className="p-6 max-h-dvh  overflow-y-auto no-scrollbar ">
+      <main className="flex-1 p-6 max-h-dvh  overflow-y-auto no-scrollbar">
         {children}
       </main>
     </div>

@@ -1,3 +1,4 @@
+"use client";
 import {
   Dialog,
   DialogContent,
@@ -8,18 +9,27 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "../ui/button";
 import { Editor } from "./editor";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export const DialogComponent = () => {
+  const [open, setOpen] = useState(false);
+  const router = useRouter();
+
+  const closeModal = () => {
+    setOpen(false);
+    router.refresh();
+  };
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={() => setOpen(!open)}>
       <DialogTrigger asChild>
-        <Button>Nova nota</Button>
+        <Button onClick={() => setOpen(true)}>Nova Anotação</Button>
       </DialogTrigger>
-      <DialogContent className="max-w-fit overflow-y-auto max-h-[80vh]">
+      <DialogContent className="max-w-fit overflow-y-auto min-h-[90vh] max-h-[90vh]">
         <DialogHeader>
           <DialogTitle>Adicionar nova Nota</DialogTitle>
-          <DialogDescription>
-            <Editor />
+          <DialogDescription className="h-full">
+            <Editor dialogClose={closeModal} />
           </DialogDescription>
         </DialogHeader>
       </DialogContent>

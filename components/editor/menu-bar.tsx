@@ -19,16 +19,22 @@ import {
   AlignRight,
   AlignJustify,
   Heading3,
+  Palette,
 } from "lucide-react";
 import { PiCodeBlock, PiCode } from "react-icons/pi";
 import MenuItem from "./menu-item";
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Separator } from "../ui/separator";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
 interface MenuBarProps {
   editor: Editor;
+  isDisabled: boolean;
 }
-export const MenuBar = ({ editor }: MenuBarProps) => {
+export const MenuBar = ({ editor, isDisabled }: MenuBarProps) => {
+  const [selectedColor, setSelectedColor] = useState("#000000");
+  const inputRef = useRef<HTMLInputElement>(null);
   const items = [
     {
       icon: <Bold className="w-5 h-5" />,
@@ -147,7 +153,23 @@ export const MenuBar = ({ editor }: MenuBarProps) => {
       title: "Avançar",
       action: () => editor.chain().focus().redo().run(),
     },
+    { space: true },
   ];
+
+  const changeTextColor = (newColor: string) => {
+    setSelectedColor(newColor);
+    editor.chain().focus().setColor(newColor).run();
+  };
+
+  const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newColor = event.target.value;
+    changeTextColor(newColor);
+  };
+
+  const handleColorPickClick = () => {
+    inputRef.current?.click();
+  };
+
   return (
     <div className="flex space-x-1 h-10 items-center justify-center">
       {items.map((item, index) =>
@@ -159,9 +181,29 @@ export const MenuBar = ({ editor }: MenuBarProps) => {
             />
           </div>
         ) : (
-          <MenuItem key={index} {...item} />
+          <MenuItem isDisabled={isDisabled} key={index} {...item} />
         )
       )}
+      <div className="flex items-center justify-center space-x-2">
+        <Button
+          title="Cor do texto"
+          variant="outline"
+          size="icon"
+          onClick={handleColorPickClick}
+          className="z-1"
+        >
+          <Palette style={{ color: selectedColor }} />
+        </Button>
+
+        <Input
+          ref={inputRef}
+          type="color"
+          hidden
+          value={selectedColor}
+          onChange={handleColorChange}
+          className="absolute p-0 m-0 w-0 h-0 z-0"
+        />
+      </div>
     </div>
   );
 };
