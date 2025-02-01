@@ -51,6 +51,9 @@ export const getNotes = async (
     include: {
       user: true,
     },
+    orderBy: {
+      updatedAt: "desc",
+    },
   });
 
   return isPublicNotes ? publicNotes : privateNotes;
@@ -67,11 +70,20 @@ export const getNoteById = async (id: string) => {
   return note;
 };
 
-export const updateNote = async (id: string, content: string) => {
+export const updateNote = async (
+  id: string,
+  {
+    title,
+    content,
+    isPublic,
+  }: { title: string; content: string; isPublic: boolean }
+) => {
   return await prisma.note.update({
     where: { id },
     data: {
       content,
+      title,
+      isPublic,
     },
   });
 };

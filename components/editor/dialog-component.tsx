@@ -23,9 +23,11 @@ export const DialogComponent = () => {
   return (
     <Dialog open={open} onOpenChange={() => setOpen(!open)}>
       <DialogTrigger asChild>
-        <Button onClick={() => setOpen(true)}>Nova Anotação</Button>
+        <Button variant="outline" onClick={() => setOpen(true)}>
+          Nova Anotação
+        </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-fit overflow-y-auto min-h-[90vh] max-h-[90vh]">
+      <DialogContent className="w-[90dvw] max-w-5xl overflow-y-auto min-h-[90vh] max-h-[90vh]">
         <DialogHeader>
           <DialogTitle>Adicionar nova Nota</DialogTitle>
           <DialogDescription className="h-full">

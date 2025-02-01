@@ -10,8 +10,3 @@ export type Note = {
   updatedAt: Date;
   user: User;
 };
-
-export enum NoteType {
-  PUBLIC = "public",
-  PRIVATE = "private",
-}

@@ -17,7 +17,11 @@ export const SetPublicNote = ({
     <div className="flex  items-center justify-center">
       <Label>Visibilidade</Label>
       <div className="flex items-center space-x-1">
-        <ToggleGroup type="single" value={isPublic ? "public" : "private"}>
+        <ToggleGroup
+          type="single"
+          value={isPublic ? "public" : "private"}
+          asChild
+        >
           <ToggleGroupItem
             onClick={() => action(true)}
             disabled={isDisabled}
