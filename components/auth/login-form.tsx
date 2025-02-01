@@ -54,6 +54,10 @@ export function LoginForm({
     }
   }
 
+  async function googleLogin() {
+    await signIn("google", { redirectTo: "/" });
+  }
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -102,6 +106,7 @@ export function LoginForm({
               <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading ? "Logging in..." : "Login"}
               </Button>
+              <Button onClick={googleLogin}>Entrar com Google</Button>
             </div>
             <div className="mt-4 text-center text-sm">
               Não tem conta?{" "}

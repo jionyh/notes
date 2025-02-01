@@ -2,8 +2,15 @@ import { Feed } from "@/components/notes/feed";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DialogComponent } from "@/components/editor/dialog-component";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { auth } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth();
+
+  if (!session?.user?.id) {
+    redirect("/login");
+  }
   return (
     <div className="flex flex-col space-y-5 items-center justify-center h-full pt-6">
       <div className="">

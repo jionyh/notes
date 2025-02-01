@@ -14,7 +14,7 @@ export const Header = async () => {
       <div className="flex-1 flex items-center justify-between px-4">
         <h1 className="text-3xl font-bold">Dev Notes</h1>
         <div className="flex items-center gap-5">
-          <UserMenu user={user} />
+          {session && <UserMenu user={user} />}
         </div>
       </div>
       <Separator />
